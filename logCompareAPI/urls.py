@@ -19,7 +19,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path(r'^admin/', admin.site.urls),
-    path(r'^$', include('maindb.urls')),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path(r'^', include('maindb.urls')),
+    path(r'^api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    path(r'^accounts/', include('django.contrib.auth.urls'))
 ]
