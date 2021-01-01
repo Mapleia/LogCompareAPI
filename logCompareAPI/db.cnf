@@ -1,6 +1,0 @@
-# my.cnf
-[client]
-database = logcomparedb
-user = root
-password = 32314
-default-character-set = utf8

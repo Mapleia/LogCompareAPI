@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,9 +35,15 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # Local App
     'maindb',
+
+    #Third Party Apps
     'rest_framework',
     'django_filters',
+    'rest_framework.authtoken',
+
+    #Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +53,11 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
 }
 
 MIDDLEWARE = [
@@ -80,17 +92,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'logCompareAPI.wsgi.application'
 
 
+
+load_dotenv()
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'logCompareAPI/db.cnf',
-        },
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'NAME': 'logcomparedb',
+        'USER': 'root',
+        'PASSWORD': os.getenv("DB_PASS"),
+        'HOST':'localhost',
+        'PORT':'3306'
     }
 }
 

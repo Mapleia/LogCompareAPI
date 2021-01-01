@@ -4,11 +4,11 @@ from django.db import models
 
 class Encounter(models.Model) :
     name = models.CharField(max_length=40)
-    fightID = models.IntegerField()
+    tryID = models.IntegerField()
     gw2Build = models.IntegerField()
 
 class Fight(models.Model) :
-    fightID = models.IntegerField()
+    tryID = models.IntegerField()
     account = models.CharField(max_length=30)
     DPS = models.IntegerField()
     archetype = models.CharField(max_length=7)
@@ -23,7 +23,7 @@ class Fight(models.Model) :
     Retaliation = models.DecimalField(max_digits=6, decimal_places=3)
     Stability = models.DecimalField(max_digits=6, decimal_places=3)
     Quickness = models.DecimalField(max_digits=6, decimal_places=3)
-    Regeneration2 = models.DecimalField(max_digits=6, decimal_places=3)
-    Aegis2 = models.DecimalField(max_digits=6, decimal_places=3)
+    RG2 = models.DecimalField(max_digits=6, decimal_places=3)
+    AG2 = models.DecimalField(max_digits=6, decimal_places=3)
     Resistance = models.DecimalField(max_digits=6, decimal_places=3)
     Alacrity = models.DecimalField(max_digits=6, decimal_places=3)
