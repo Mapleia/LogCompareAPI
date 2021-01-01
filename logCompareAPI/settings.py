@@ -102,9 +102,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'logcomparedb',
-        'USER': 'root',
+        'USER': 'mapleia',
         'PASSWORD': os.getenv("DB_PASS"),
-        'HOST':'localhost',
+        'HOST':'mapleia.mysql.pythonanywhere-services.com',
         'PORT':'3306'
     }
 }
