@@ -27,9 +27,7 @@ SECRET_KEY = '^2qz)@ppm%_7%+g$#dwj+m+c8z7nt(n$4p71=+$xmuem^g&rv6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-
-]
+ALLOWED_HOSTS = ['http://mapleia.pythonanywhere.com/']
 
 
 # Application definition
@@ -101,11 +99,10 @@ load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'logcomparedb',
+        'NAME': 'mapleia$logcomparedb',
         'USER': 'mapleia',
         'PASSWORD': os.getenv("DB_PASS"),
         'HOST':'mapleia.mysql.pythonanywhere-services.com',
-        'PORT':'3306'
     }
 }
 
