@@ -27,7 +27,7 @@ SECRET_KEY = '^2qz)@ppm%_7%+g$#dwj+m+c8z7nt(n$4p71=+$xmuem^g&rv6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://mapleia.pythonanywhere.com/']
+ALLOWED_HOSTS = ['mapleia.pythonanywhere.com/']
 
 
 # Application definition
