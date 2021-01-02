@@ -1,7 +1,6 @@
-from django.conf.urls import url
-from django.urls import path, include
+from django.urls import path, 
 from .views import RegisterApi
 
 urlpatterns = [
-      path('api/register', RegisterApi.as_view()),
+      path('register/', RegisterApi.as_view()),
 ]

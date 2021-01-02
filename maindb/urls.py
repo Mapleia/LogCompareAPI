@@ -9,4 +9,4 @@ router.register(r'fights', views.FightViewSets, basename='fights')
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    ]
+]
