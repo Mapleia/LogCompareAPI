@@ -15,7 +15,8 @@
       <div class="col-sm-2">
       {% block sidebar %}
         <ul class="sidebar-nav">
-          <li><a href="{% url 'api' %}">Home</a></li>
+          <li><a href="{% url 'encounters-list' %}">Encounters</a></li>
+          <li><a href="{% url 'fights-list' %}">Fights</a></li>
         </ul>
      {% endblock %}
       </div>
