@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('maindb.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', views.signup, name='signup')
+    #path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', views.register, name='register')
 ]

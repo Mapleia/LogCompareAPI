@@ -1,4 +1,3 @@
-
 # Create your views here.
 
 from rest_framework import viewsets, permissions
@@ -7,9 +6,9 @@ from .models import Encounter, Fight
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import render
 
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 class EncounterViewSets(viewsets.ModelViewSet) :
     queryset = Encounter.objects.all()
@@ -27,16 +26,15 @@ class FightViewSets(viewsets.ModelViewSet) :
     filterset_fields = ['tryID', 'account']
 
 
-def signup(request):
+def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+        f = UserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.success(request, 'Account created successfully')
             return redirect('api')
+
     else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+        f = UserCreationForm()
+
+    return render(request, 'signup.html', {'form': f})
