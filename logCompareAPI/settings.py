@@ -27,7 +27,7 @@ SECRET_KEY = '^2qz)@ppm%_7%+g$#dwj+m+c8z7nt(n$4p71=+$xmuem^g&rv6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mapleia.pythonanywhere.com']
+ALLOWED_HOSTS = ['mapleia.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['mapleia.pythonanywhere.com']
 INSTALLED_APPS = [
     # Local App
     'maindb',
+    'accounts',
 
     #Third Party Apps
     'rest_framework',
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
 }
@@ -99,10 +100,11 @@ load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mapleia$logcomparedb',
-        'USER': 'mapleia',
-        'PASSWORD': os.getenv("DB_PASS"),
-        'HOST':'mapleia.mysql.pythonanywhere-services.com',
+        'NAME': 'logcomparedb',
+        'USER': 'root',
+        'PASSWORD': '32314',
+        'HOST':'localhost',
+        'PORT': '3306',
     }
 }
 

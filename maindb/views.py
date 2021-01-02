@@ -24,17 +24,3 @@ class FightViewSets(viewsets.ModelViewSet) :
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['tryID', 'account']
-
-
-def register(request):
-    if request.method == 'POST':
-        f = UserCreationForm(request.POST)
-        if f.is_valid():
-            f.save()
-            messages.success(request, 'Account created successfully')
-            return redirect('api')
-
-    else:
-        f = UserCreationForm()
-
-    return render(request, 'signup.html', {'form': f})
