@@ -100,11 +100,10 @@ load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'logcomparedb',
-        'USER': 'root',
-        'PASSWORD': '32314',
-        'HOST':'localhost',
-        'PORT': '3306',
+        'NAME': 'mapleia$logcomparedb',
+        'USER': 'mapleia',
+        'PASSWORD': os.getenv('DB_PASS'),
+        'HOST':'mapleia.mysql.pythonanywhere-services.com',
     }
 }
 
