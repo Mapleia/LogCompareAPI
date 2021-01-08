@@ -4,12 +4,12 @@ from django.db import models
 #               "Might","Aegis","Retaliation","Stability","Quickness","Resistance", "Alacrity"];
 
 # Create your models here.
-class Encounter(models.Model) :
+class Encounters(models.Model) :
     name = models.CharField(max_length=40)
     tryID = models.BigIntegerField()
     gw2Build = models.IntegerField()
 
-class Fight(models.Model) :
+class Fights(models.Model) :
     tryID = models.IntegerField()
     account = models.CharField(max_length=30)
     DPS = models.IntegerField()

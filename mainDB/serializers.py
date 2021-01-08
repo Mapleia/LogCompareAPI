@@ -1,16 +1,16 @@
 #serializers.py
 
 from rest_framework import serializers
-from .models import Encounter, Fight
+from .models import Encounters, Fights
 
 class EncounterSerializer(serializers.HyperlinkedModelSerializer) :
     class Meta: 
-        model = Encounter
+        model = Encounters
         fields = ('tryID', 'name', 'gw2Build')
 
 class FightSerializer(serializers.HyperlinkedModelSerializer) :
     class Meta:
-        model = Fight
+        model = Fights
         fields = ('tryID', 'account', 'DPS', 'archetype', 'protection','regeneration',
         'swiftness','fury','vigor','might','aegis','retaliation','stability',
         'quickness','resistance', 'alacrity')
