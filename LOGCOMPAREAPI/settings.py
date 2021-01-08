@@ -93,7 +93,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD':os.getenv('DB_PASS'),
         'HOST':'localhost',
-        'PORT':'3306'
+        'PORT':'3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
 
