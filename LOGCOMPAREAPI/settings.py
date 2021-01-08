@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['mapleia.pythonanywhere.com', '127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     #REST FRAMEWORK
     'mainDB',
+    'accounts',
 
     #Third Party Apps
     'rest_framework',
@@ -89,17 +90,17 @@ WSGI_APPLICATION = 'LOGCOMPAREAPI.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mapleia$logcomparedb',
+        'NAME': 'logcomparedb',
         # 'logcomparedb'
         # 'mapleia$logcomparedb'
-        'USER': 'mapleia',
+        'USER': 'root',
         # 'root'
         # 'mapleia'
         'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': 'mapleia.mysql.pythonanywhere-services.com',
+        'HOST': 'localhost',
         # 'localhost'
         # 'mapleia.mysql.pythonanywhere-services.com'
-        #'PORT': '3306',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }

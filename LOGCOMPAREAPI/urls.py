@@ -22,13 +22,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 
-router = routers.DefaultRouter(trailing_slash=True)
-router.register(r'encounters', views.EncounterViewSets, basename='encounters')
-router.register(r'fights', views.FightViewSets, basename='fights')
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/', include('mainDB.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name ='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name ='token_refresh'),
     path('accounts/', include('accounts.urls')),
