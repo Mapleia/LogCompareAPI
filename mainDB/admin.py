@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Encounters, Fights
+from .models import Encounter, Fight
 # Register your models here.
 
-admin.site.register(Encounters)
-admin.site.register(Fights)
+admin.site.register(Encounter)
+admin.site.register(Fight)

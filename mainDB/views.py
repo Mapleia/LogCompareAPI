@@ -4,11 +4,11 @@ from rest_framework import viewsets, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import EncounterSerializer, FightSerializer
-from .models import Encounters, Fights
+from .models import Encounter, Fight
 
 
 class EncounterViewSets(viewsets.ModelViewSet) :
-    queryset = Encounters.objects.all()
+    queryset = Encounter.objects.all()
     serializer_class = EncounterSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -17,7 +17,7 @@ class EncounterViewSets(viewsets.ModelViewSet) :
 
 
 class FightViewSets(viewsets.ModelViewSet) :
-    queryset = Fights.objects.all()
+    queryset = Fight.objects.all()
     serializer_class = FightSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
