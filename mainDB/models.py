@@ -27,3 +27,5 @@ class Fight(models.Model) :
     quickness = models.DecimalField(max_digits=6, decimal_places=3, default=0)
     resistance = models.DecimalField(max_digits=6, decimal_places=3, default=0)
     alacrity = models.DecimalField(max_digits=6, decimal_places=3, default=0)
+    rg2 = models.DecimalField(max_digits=6, decimal_places=3, default=0)
+    ag2 = models.DecimalField(max_digits=6, decimal_places=3, default=0) 
