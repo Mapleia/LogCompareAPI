@@ -10,7 +10,7 @@ class Encounter(models.Model) :
     gw2Build = models.IntegerField()
 
 class Fight(models.Model) :
-    tryID = models.IntegerField()
+    tryID = models.BigIntegerField()
     account = models.CharField(max_length=30)
     DPS = models.IntegerField()
     archetype = models.CharField(max_length=7)
