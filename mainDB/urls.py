@@ -4,7 +4,7 @@ from . import views
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'encounters', views.EncounterViewSets, basename='encounters')
-router.register(r'fights', views.FightViewSets, basename='fights')
+#router.register(r'fights', views.FightViewSets, basename='fights')
 router.register(r'percentiles', views.PercentileViewSets, basename='percentiles')
 
 # Wire up our API using automatic URL routing.

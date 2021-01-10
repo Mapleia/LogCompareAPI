@@ -1,5 +1,6 @@
 from django.db import models
 
+# 725 Fury, 740 Might, 1187 Quickness, 30328 Alacrity
 
 # BOONS = [717,718,719,725,726,740,743,873,1122,1187,26980,30328];
 # BOON_NAMES = ["Protection","Regeneration","Swiftness","Fury","Vigor",
@@ -9,9 +10,9 @@ from django.db import models
 
 class Encounter(models.Model):
     name = models.CharField(max_length=40)
-    tryID = models.BigIntegerField()
+    tryID = models.CharField(max_length=40)
     account = models.CharField(max_length=30)
-    DPS = models.IntegerField()
+    DPS = models.DecimalField(max_digits=10, decimal_places=3, default=0)
     archetype = models.CharField(max_length=7)
     gw2Build = models.IntegerField()
 
