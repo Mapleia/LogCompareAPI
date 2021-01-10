@@ -30,12 +30,20 @@ class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
     serializer_class = FightSerializer
 
     def get_queryset(self):
+        percent_rank_by_encounter = Window(
+            expression=PercentRank(),
+            partition_by=F('archetype'),
+             order_by=F('tryID').asc()
+        )
+
         query_name = self.request.query_params.get('name', None)
         if query_name is not None:
             encounters = Encounter.objects.filter(name=query_name).values_list('tryID')
-            fights = Fight.objects.filter(tryID__in=encounters).annotate(percent_rank=Window(
-                expression=PercentRank(),
-                partition_by=F('archetype'),
-                order_by=F('tryID').asc()
-            ))
+            print(encounters)
+
+            fights = Fight.objects.filter(tryID__in=encounters
+                ).annotate(percent_rank=percent_rank_by_encounter
+                ).order_by('tryID')
+            print(fights)
+                
             return fights
