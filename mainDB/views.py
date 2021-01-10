@@ -38,7 +38,7 @@ class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
 
         query_name = self.request.query_params.get('name', None)
         if query_name is not None:
-            encounters = Encounter.objects.filter(name=query_name).values_list('tryID', flat=True)
+            encounters = list(Encounter.objects.filter(name=query_name).values_list('tryID', flat=True))
             print(encounters)
 
             fights = Fight.objects.filter(tryID__in=encounters,
