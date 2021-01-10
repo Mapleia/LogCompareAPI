@@ -1,4 +1,18 @@
+#Environment
 .env
 venv
+
+#IDE & Editors
 .vscode
 .idea
+
+#Cache
+*.pyc
+
+mainDB/__pycache__
+mainDB/migrations/__pycache__
+
+accounts/__pycache__
+accounts/migrations/__pycache__
+
+LOGCOMPAREAPI/__pycache__
