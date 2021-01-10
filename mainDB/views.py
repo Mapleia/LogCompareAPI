@@ -27,6 +27,7 @@ class FightViewSets(viewsets.ModelViewSet):
 
 
 class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
+    serializer_class = FightSerializer
 
     def get_queryset(self):
         query_name = self.request.query_params.get('name', None)
