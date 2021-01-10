@@ -33,7 +33,7 @@ class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
         query_name = self.request.query_params.get('name', None)
         if query_name is not None:
             encounters = Encounter.objects.filter(name=query_name).values_list('tryID')
-            fights = Fight.objects.filter(tryID_in=encounters).annotate(percent_rank=Window(
+            fights = Fight.objects.filter(tryID__in=encounters).annotate(percent_rank=Window(
                 expression=PercentRank(),
                 partition_by=F('archetype'),
                 order_by=F('tryID').asc()
