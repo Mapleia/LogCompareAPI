@@ -1,7 +1,7 @@
 # serializers.py
 
 from rest_framework import serializers
-from .models import Encounter, Fight
+from .models import Encounter, Fight, Percentile
 
 
 class EncounterSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,3 +16,9 @@ class FightSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('tryID', 'account', 'DPS', 'archetype', 'protection', 'regeneration',
                   'swiftness', 'fury', 'vigor', 'might', 'aegis', 'retaliation', 'stability',
                   'quickness', 'resistance', 'alacrity')
+
+
+class PercentileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Percentile
+        fields = ('tryID', 'account', 'DPS', 'archetype', 'percent_rank')

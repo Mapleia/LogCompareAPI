@@ -4,7 +4,7 @@ from django.db.models.functions import PercentRank
 from rest_framework import viewsets, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .serializers import EncounterSerializer, FightSerializer
+from .serializers import EncounterSerializer, FightSerializer, PercentileSerializer
 from .models import Encounter, Fight
 
 
@@ -27,23 +27,34 @@ class FightViewSets(viewsets.ModelViewSet):
 
 
 class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
-    serializer_class = FightSerializer
+    serializer_class = PercentileSerializer
 
     def get_queryset(self):
-        percent_rank_by_encounter = Window(
-            expression=PercentRank(),
-            partition_by=F('archetype'),
-             order_by=F('tryID').asc()
-        )
+        dps_rank = Window(expression=PercentRank(), partition_by=F('archetype'), order_by=F('DPS').asc())
+        
+        def make_boon_rank(boon) :
+            return Window(
+                expression=PercentRank(),
+                order_by=F(boon).desc())
 
         query_name = self.request.query_params.get('name', None)
-        if query_name is not None:
+        query_id = self.request.query_params.get('tryid', None)
+        print(query_name)
+        print(query_id)
+        if query_name and query_id is not None:
             encounters = list(Encounter.objects.filter(name=query_name).values_list('tryID', flat=True))
+            print('Encounter:')
             print(encounters)
 
-            fights = Fight.objects.filter(tryID__in=encounters,
-                ).annotate(percent_rank=percent_rank_by_encounter
-                ).order_by('tryID')
-            print(fights)
-                
-            return fights
+            fights_filtered = Fight.objects.filter(tryID__in=encounters)
+            dps = fights_filtered.annotate(percent_rank=dps_rank,  rank_dps=F('percent_rank')).order_by('archetype').values('tryID', 'account', 'DPS', 'archetype', 'percent_rank')
+            might = fights_filtered.annotate(percent_rank=make_boon_rank('might')).values('tryID', 'account', 'DPS','archetype', 'percent_rank')    
+            quick = fights_filtered.annotate(percent_rank=make_boon_rank('quickness')).values('tryID', 'account', 'DPS','archetype', 'percent_rank') 
+            alac = fights_filtered.annotate(percent_rank=make_boon_rank('alacrity')).values('tryID', 'account', 'DPS','archetype', 'percent_rank') 
+            fury = fights_filtered.annotate(percent_rank=make_boon_rank('fury')).values('tryID', 'account', 'DPS','archetype', 'percent_rank') 
+
+            print(dps.query)
+            #print(might.query)
+            #print(quick.query)
+            #print(alac.query)
+            return dps
