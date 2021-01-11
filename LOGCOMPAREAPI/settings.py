@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #Third Party Apps
     'rest_framework',
     'django_filters',
+    'rest_framework_api_key',
 
     #DJANGO
     'django.contrib.admin',
@@ -90,17 +91,17 @@ WSGI_APPLICATION = 'LOGCOMPAREAPI.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mapleia$logcomparedb',
+        'NAME': 'logcomparedb',
         # 'logcomparedb'
         # 'mapleia$logcomparedb'
-        'USER': 'mapleia',
+        'USER': 'root',
         # 'root'
         # 'mapleia'
         'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': 'mapleia.mysql.pythonanywhere-services.com',
+        'HOST': 'localhost',
         # 'localhost'
         # 'mapleia.mysql.pythonanywhere-services.com'
-        #'PORT': '3306',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
@@ -130,6 +131,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework_api_key.permissions.HasAPIKey',
+    ]
 }
 
 SIMPLE_JWT = {

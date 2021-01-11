@@ -16,12 +16,12 @@ class EncounterViewSets(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['tryID', 'name']
 
+
 class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
     serializer_class = PercentileSerializer
 
     def get_queryset(self):
-        
-        def make_boon_rank(boon) :
+        def make_boon_rank(boon):
             return Window(
                 expression=PercentRank(),
                 order_by=F(boon).asc())
@@ -32,12 +32,14 @@ class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
             dps_rank = Window(expression=PercentRank(), partition_by=F('archetype'), order_by=F('DPS').asc())
 
             encounters = Encounter.objects.filter(name=query_name
-            ).annotate(percent_rank=dps_rank, percentrankdps=F('percent_rank')
-            ).annotate(percent_rank=make_boon_rank('might'), percentrankmight=F('percent_rank')
-            ).annotate(percent_rank=make_boon_rank('quickness'), percentrankquickness=F('percent_rank')
-            ).annotate(percent_rank=make_boon_rank('alacrity'), percentrankalacrity=F('percent_rank')
-            ).annotate(percent_rank=make_boon_rank('fury'), percentrankfury=F('percent_rank')
-            ).order_by('DPS')
+                                                  ).annotate(percent_rank=dps_rank, percentrankdps=F('percent_rank')
+                                                             ).annotate(percent_rank=make_boon_rank('might'),
+                                                                        percentrankmight=F('percent_rank')
+                                                                        ).annotate(
+                percent_rank=make_boon_rank('quickness'), percentrankquickness=F('percent_rank')
+                ).annotate(percent_rank=make_boon_rank('alacrity'), percentrankalacrity=F('percent_rank')
+                           ).annotate(percent_rank=make_boon_rank('fury'), percentrankfury=F('percent_rank')
+                                      ).order_by('DPS')
 
             return encounters
 
