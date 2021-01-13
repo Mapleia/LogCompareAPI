@@ -13,7 +13,7 @@ class Encounter(models.Model):
     name = models.CharField(max_length=40)
     tryID = models.CharField(max_length=40)
     account = models.CharField(max_length=30)
-    DPS = models.DecimalField(max_digits=10, decimal_places=3, default=0)
+    DPS = models.IntegerField()
     archetype = models.CharField(max_length=7)
     gw2Build = models.IntegerField()
 

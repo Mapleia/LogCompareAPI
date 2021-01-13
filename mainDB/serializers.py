@@ -1,22 +1,17 @@
 # serializers.py
 
 from rest_framework import serializers
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Encounter
 
 
-class EncounterSerializer(serializers.ModelSerializer):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-
+class EncounterSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Encounter
         fields = '__all__'
 
 
 class PercentileSerializer(serializers.ModelSerializer):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-
     percentrankdps = serializers.SerializerMethodField(read_only=True)
     percentrankmight = serializers.SerializerMethodField(read_only=True)
     percentrankquickness = serializers.SerializerMethodField(read_only=True)
@@ -40,6 +35,6 @@ class PercentileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Encounter
-        fields = ('tryID', 'account', 'archetype',
+        fields = ('tryID', 'account', 'archetype', 'name',
                   'percentrankdps', 'percentrankmight', 'percentrankquickness', 'percentrankalacrity',
                   'percentrankfury')
