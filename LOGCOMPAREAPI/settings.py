@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'accounts',
 
     #Third Party Apps
+    'corsheaders',
     'rest_framework',
     'django_filters',
     'rest_framework_api_key',
-
+    
     #DJANGO
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,6 +56,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -163,6 +166,11 @@ SIMPLE_JWT = {
 
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://log-compare-website.vercel.app/",
+    "http://localhost:3000",
 ]
 
 # Internationalization
