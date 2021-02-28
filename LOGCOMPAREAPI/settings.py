@@ -169,7 +169,7 @@ FILE_UPLOAD_HANDLERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://log-compare-website.vercel.app/",
+    "https://gw2compare.vercel.app/",
     "http://localhost:3000",
 ]
 
