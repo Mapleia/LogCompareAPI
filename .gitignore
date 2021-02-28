@@ -1,5 +1,6 @@
 #Environment
 .env
+venv_old
 venv
 
 #IDE & Editors

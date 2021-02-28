@@ -45,18 +45,18 @@ You should see "logcomparedb".
     
     c. Create virtual environment with virtualenv. 
     ```shell script
-    virtualenv venv
+    virtualenv venv_old
     ```
     d. Activate virtual environment. (shell script)
     ```shell script
-    venv/Scripts/activate
+    venv_old/Scripts/activate
     ```
    
 2. Install requirements.
     
     Once your virtual environment is running, the terminal should show:
     ```shell script
-    (venv) C:\path_to_project_folder\LogCompareAPI>
+    (venv_old) C:\path_to_project_folder\LogCompareAPI>
     ```
    
    In here, pip install the requirements.
