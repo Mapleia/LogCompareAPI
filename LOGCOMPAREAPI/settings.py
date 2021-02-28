@@ -94,16 +94,10 @@ WSGI_APPLICATION = 'LOGCOMPAREAPI.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'logcomparedb',
-        # 'logcomparedb'
-        # 'mapleia$logcomparedb'
-        'USER': 'root',
-        # 'root'
-        # 'mapleia'
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
         'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': 'localhost',
-        # 'localhost'
-        # 'mapleia.mysql.pythonanywhere-services.com'
+        'HOST': os.getenv('HOST'),
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
