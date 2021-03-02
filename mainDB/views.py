@@ -20,15 +20,6 @@ def get_archetype(player):
     else:
         return 'DPS'
 
-
-# def get_tryid(data):
-#     try_id = 0
-#     for player in data['players']:
-#         try_id += hash(player['account']) + player['instanceID']
-
-#     return try_id
-
-
 def parse_json(data, tryid):
     arr = []
     buff_arr = {725: 'fury', 740: 'might', 1187: 'quickness', 30328: 'alacrity'}
@@ -56,7 +47,7 @@ def parse_json(data, tryid):
 class EncounterViewSets(viewsets.ModelViewSet):
     queryset = Encounter.objects.all()
     serializer_class = EncounterSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    #permission_classes = [IsAuthenticatedOrReadOnly]
 
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['tryID', 'name']
@@ -82,7 +73,7 @@ class EncounterViewSets(viewsets.ModelViewSet):
 class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
     model = Encounter
     serializer_class = PercentileSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    #permission_classes = [IsAuthenticatedOrReadOnly]
 
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['name']
@@ -102,24 +93,3 @@ class PercentileViewSets(viewsets.ReadOnlyModelViewSet):
                    ).annotate(percent_rank=make_boon_rank('fury'), percentrankfury=F('percent_rank'))
 
         return queryset
-
-    # def list(self, request):
-    #     tryid = request.GET.get('tryid', None)
-    #     print(tryid)
-    #     queryset = self.get_queryset()
-    #     if tryid is not None:
-    #         # print(list(filter(lambda e: (e.tryID == tryid), list(queryset))))
-    #         # print(list(queryset))
-    #         for encounter in list(queryset):
-    #             if encounter.tryID == tryid:
-    #                 print(encounter.tryID)
-    #
-    #         encounters = [Encounter for encounter in list(queryset) if encounter.tryID == tryid]
-    #         # print(encounters)
-    #         data = serializers.serialize('json', encounters)
-    #         # print(data)
-    #         return HttpResponse(data, content_type="application/json")
-    #     else:
-    #         data = serializers.serialize('json', list(queryset))
-    #         print(data)
-    #         return HttpResponse(data, content_type="application/json")

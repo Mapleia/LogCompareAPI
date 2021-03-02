@@ -163,8 +163,9 @@ FILE_UPLOAD_HANDLERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://gw2compare.vercel.app/",
+    "https://gw2compare.vercel.app",
     "http://localhost:3000",
+    "https://mapleia.github.io/logcompare-react"
 ]
 
 # Internationalization
