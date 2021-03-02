@@ -54,19 +54,23 @@ class EncounterViewSets(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def upload_report(self, req):
-        tryid = self.request.query_params.get('id')
-        r2 = requests.get('https://dps.report/getJson?id=' + tryid)
+        file = self.request.FILES
+        send = requests.post('https://dps.report/uploadContent?generator=ei&json=1', files=file)
+        uploadJson = send.json()
+
+        r2 = requests.get('https://dps.report/getJson?id=' + uploadJson['id'])
         dr_json = r2.json()
 
-        exist = Encounter.objects.filter(tryID=tryid).exists()
+        exist = Encounter.objects.filter(tryID=uploadJson['id']).exists()
         if not exist:
-            parsed = parse_json(dr_json, tryid)
+            parsed = parse_json(dr_json, uploadJson['id'])
             #print(parsed)
             Encounter.objects.bulk_create(parsed)
 
-        return Response({'tryID': tryid,
+        return Response({'tryID': uploadJson['id'],
                          'fightName': dr_json['fightName'],
-                         'fightIcon': dr_json['fightIcon']},
+                         'fightIcon': dr_json['fightIcon'],
+                         'permaLink': uploadJson['permalink']},
                         status=status.HTTP_201_CREATED)
 
 
