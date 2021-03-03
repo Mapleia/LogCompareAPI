@@ -1,1 +1,1 @@
-web: gunicorn LogCompareApi.wsgi
+web: gunicorn LOGCOMPAREAPI.wsgi
