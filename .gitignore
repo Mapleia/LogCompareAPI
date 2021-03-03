@@ -11,11 +11,9 @@ venv
 *.pyc
 
 mainDB/__pycache__
-mainDB/migrations/*
-!mainDB/migrations/__init__
+mainDB/migrations/__pycache__
 
 accounts/__pycache__
-accounts/migrations/*
-!accounts/migrations/__init__
+accounts/migrations/__pycache__
 
 LOGCOMPAREAPI/__pycache__
