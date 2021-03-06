@@ -9,14 +9,24 @@ from django.db import models
 
 # Create your models here. 
 
-class Encounter(models.Model):
+class Boss(models.Model):
     name = models.CharField(max_length=40)
-    tryID = models.CharField(max_length=40)
-    account = models.CharField(max_length=30)
-    DPS = models.IntegerField()
-    archetype = models.CharField(max_length=7)
-    gw2Build = models.IntegerField()
+    icon = models.URLField()
 
+class Fight(models.Model):
+    boss = models.ForeignKey(Boss, on_delete=models.CASCADE)
+    tryID = models.CharField(max_length=40)
+    gw2Build = models.IntegerField()
+    permaLink = models.URLField()
+    cm = models.BooleanField(default=False)
+
+
+class Encounter(models.Model):
+    name = models.CharField(max_length=30)
+    fight = models.ForeignKey(Fight, on_delete=models.CASCADE)
+    account = models.CharField(max_length=30)
+    archetype = models.CharField(max_length=7)
+    DPS = models.IntegerField()
     fury = models.DecimalField(max_digits=6, decimal_places=3, default=0)
     might = models.DecimalField(max_digits=6, decimal_places=3, default=0)
     quickness = models.DecimalField(max_digits=6, decimal_places=3, default=0)

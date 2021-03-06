@@ -26,8 +26,11 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 
 
 router = routers.DefaultRouter()
-router.register(r'encounters', views.EncounterViewSets)
-router.register(r'percentiles', views.PercentileViewSets, basename='percentiles')
+
+router.register('encounters', views.EncounterViewSets)
+router.register('bosses', views.BossViewSets)
+router.register('fights', views.FightViewSets)
+router.register('percentiles', views.PercentileViewSets, basename='percentiles')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,8 +38,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('accounts/', include('accounts.urls')),
-    path(
-        "favicon.ico",
-        RedirectView.as_view(url=staticfiles_storage.url("favicon.ico")),
-    ),
+    path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("favicon.ico")),),
 ]
