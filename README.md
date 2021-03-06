@@ -71,6 +71,11 @@ You should see "logcomparedb".
     ```.env
     DB_PASS='INSERT YOUR DATABASE PASSWORD HERE'
     SECRET_KEY='INSERT SECRET DJANGO KEY HERE'
+    NAME='logcomparedb'
+    USER='INSERT LOCAL DB USERNAME HERE'
+    HOST='localhost'
+    ENVIRONMENT='DEV'
+
    ```
     
 ## Setup Django.
